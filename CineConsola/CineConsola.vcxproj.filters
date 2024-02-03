@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Archivos de origen">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Bibliotecas">
+      <UniqueIdentifier>{2be772e3-c240-4a54-93cb-93c3a5923040}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Bibliotecas\Encabezados">
+      <UniqueIdentifier>{f9c8cd37-a26b-495d-a9b0-0fa0203550bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Bibliotecas\Implementaciones">
+      <UniqueIdentifier>{5c42d882-f976-49ae-9cce-f447b481e107}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CineConsola.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Bibliotecas\Implementaciones</Filter>
+    </ClCompile>
+    <ClCompile Include="Validaciones.cpp">
+      <Filter>Bibliotecas\Implementaciones</Filter>
+    </ClCompile>
+    <ClCompile Include="Calcular.cpp">
+      <Filter>Bibliotecas\Implementaciones</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Menu.h">
+      <Filter>Bibliotecas\Encabezados</Filter>
+    </ClInclude>
+    <ClInclude Include="Validaciones.h">
+      <Filter>Bibliotecas\Encabezados</Filter>
+    </ClInclude>
+    <ClInclude Include="Calcular.h">
+      <Filter>Bibliotecas\Encabezados</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
