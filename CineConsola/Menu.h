@@ -15,9 +15,9 @@ public:
     void Asientos();
     void Promociones();
     void ListarUsuarios(std::string* usuarios , int numeroUsuarios);
+    void Combos();
 
     void Tipodecliente();
-    void Combos();
     void Bebidas();
     void Tarjeta();
     void Credito();

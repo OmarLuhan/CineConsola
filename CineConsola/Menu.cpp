@@ -113,11 +113,20 @@ void Menu:: Promociones() {
 	cout << "'\nPOR LA COMPRA DE 6 A MAS TICKETS LLEVA UN PASE GRATIS\n" << endl;
 	Encabezado(4);
 }
-
 void Menu::ListarUsuarios(string * usuarios,int numeroUsuarios) {
 	for (int i = 0; i < numeroUsuarios; i++) {
 		cout << "[ " << i + 1 << "]" << usuarios[i];
 		cout << "\n";
 		fflush(stdin);
 	}
+}
+void Menu:: Combos() {
+	Encabezado(5);
+	cout << "CONTAMOS CON LOS SIGUIENTES COMBOS\n" << endl;
+	cout << "a. | COMBO NACHOS (S/.33.50) | " << endl;
+	cout << "     Incluye tres vasos de gaseosa,un balde de cancha gigante y una porcion de nachos\n\n";
+	cout << "b. | CCOMBO DUO (S/.39.90) | " << endl;
+	cout << "     Incluye 2 envases de canchita tamao grande y dos vasos de gaseosa\n\n";
+	cout << "c. | COMBINACIN 1 SAL (S/. 20.60)  | " << endl;
+	cout << "     Incluye 1 Popcorn mediano con sal + 1 gaseosa mediana\n";
 }

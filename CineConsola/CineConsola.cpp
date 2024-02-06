@@ -29,6 +29,9 @@ int main()
 	int numeroTickets = 0;
 	string posicion = " ";
 	int numeroPosicion = 0;
+	double precioCombo = 0;
+	string cantidadCombos = " ";
+	int numeroCantidadCombos = 0;
 #pragma endregion
 #pragma region boleta
 	string nombre = "";
@@ -297,8 +300,8 @@ int main()
 			cout << "\n";
 			cout << "a) Continuar "<<endl;
 			cout << "b) Editar nombres de usuarios" << endl;
-			cin >> opcion;
-			opcion = _validar.ValidarOpcion(opcion);
+			cin >> respuesta;
+			respuesta = _validar.ValidarOpcion(respuesta);
 			if (opcion == 'b') {
 				do {
 					cout << "Ingrese el numero de poscion que desea editar (1 -" << numeroTickets << ")" << endl;
@@ -311,10 +314,69 @@ int main()
 				cout << "usuario actualizado " << endl;
 			}
 			
-		} while (opcion !='a');
-		
-	cout << "                                                                                         SUBTOTAL A PAGAR : " << costoTotal << endl;
-	delete[] usuarios;
+		} while (respuesta !='a');
+		cout << "                                                                                         SUBTOTAL A PAGAR : " << costoTotal << endl;
+		system("pause");
+		system("cls");
+		cout << "¿DESEA ADQUIRIR ALGUN COMBO?\n" << endl;
+		cout << "a) NO,Continuar " << endl;
+		cout << "b) SI, elegir" << endl;
+		cin >> respuesta;
+		respuesta = _validar.ValidarOpcion(respuesta);
+		if (respuesta == 'b') {
+			do {
+				do {
+					_menu.Combos();
+					cout << "ingrese la opcion que desea (a-c)" << endl;
+					cin >> opcion;
+					opcion = _validar.ValidarOpcion3(opcion);
+					switch (opcion) {
+					case 'a':
+						precioCombo = 33.50;
+						cout << "\nEl combo NACHOS cuesta $" << precioCombo << endl; break;
+					case 'b':
+						precioCombo = 39.90;
+						cout << "\nEl combo DUO cuesta $" << precioCombo << endl; break;
+					case 'c':precioCombo = 20.60;
+						cout << "\nEl combo COMBINACION cuesta $" << precioCombo << endl; break;
+					}
+					cout << "a) continuar" << endl;
+					cout << "b) elegir otro combo" << endl;
+					cin >> respuesta;
+					respuesta = _validar.ValidarOpcion(respuesta);
+				} while (respuesta != 'a');
+				do {
+					do {
+						cout << " Cunatos combos desea adquirir (maximo 10) " << endl;
+						cin >> cantidadCombos;
+						numeroCantidadCombos = _validar.ValidarNumero(cantidadCombos);
+						if (numeroCantidadCombos < 1)
+							cout << "ingrese un numero positivo " << endl;
+						if (numeroCantidadCombos > 10)
+							cout << " ingrese un numero menor a 10" << endl;
+						Sleep(500);
+					} while (numeroCantidadCombos < 1 || numeroCantidadCombos>10);
+					cout << " El precio por 1 combo es de $" << precioCombo << endl;
+					cout << "usted esta por adquirir " << numeroCantidadCombos << " y el precio total serian de " << precioCombo * numeroCantidadCombos << endl;
 
+					cout << "a) continuar" << endl;
+					cout << "b) ingresar otra cantidad" << endl;
+					cin >> respuesta;
+					respuesta = _validar.ValidarOpcion(respuesta);
+				} while (respuesta != 'a');
+				cout << " se le aggregara el mont de $" << precioCombo * numeroCantidadCombos << " a su cuanta actual de $ " << costoTotal << endl;
+				cout << "a) si" << endl;
+				cout << "b) elegir otros combos" << endl;
+				cin >> respuesta;
+				respuesta = _validar.ValidarOpcion(respuesta);
+			} while (respuesta!='a');
+			costoTotal = _calcular.SumaAcumulativa(costoTotal, precioCombo * numeroCantidadCombos);
+			
+			cout << "                                                                                         SUBTOTAL A PAGAR : " << costoTotal << endl;
+
+		}
+		
+	//cout << "                                                                                         SUBTOTAL A PAGAR : " << costoTotal << endl;
+	delete[] usuarios;
 	return 0;
 }
