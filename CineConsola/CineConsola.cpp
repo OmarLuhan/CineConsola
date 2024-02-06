@@ -17,12 +17,25 @@ int main()
 	Validaciones _validar;
 	Calcular _calcular;
 #pragma endregion
+#pragma region variables opciones y respuestas
 	char opcion=' ';
 	char respuesta = ' ';
+#pragma endregion
+#pragma region variables de presios y calculos
 	double costoTotal = 0;
 	double costoPelicula = 0;
 	double porcentaje = 1;
-	int tickets = 0;
+	string tickets = " ";
+	int numeroTickets = 0;
+	string posicion = " ";
+	int numeroPosicion = 0;
+#pragma endregion
+#pragma region boleta
+	string nombre = "";
+	string* usuarios;
+
+#pragma endregion
+
 	_menu.Saludo();
 	do {
 		_menu.Peliculas();
@@ -49,29 +62,25 @@ int main()
 					case 'a':
 						costoPelicula = 24.70;
 						cout << "\nLa pelicula [Star Wars: Episodio IX] cuesta: S/" << costoPelicula << endl;
-						Sleep(2000); break;
+						break;
 					case 'b':
 						costoPelicula = 26.50;
 						cout << "\nLa pelicula [IT :Capitulo II] cuesta: S/" << costoPelicula << endl;
-						Sleep(2000); break;
+						break;
 					case 'c':
 						costoPelicula = 21.80;
 						cout << "\nLa pelicula [Zombie Land 2] cuesta: S/" << costoPelicula << endl;
-						Sleep(2000);
 						break;
 					case 'd':
 						costoPelicula = 22.99;
 						cout << "\nLa pelicula [Terminator: Destino oscuro] cuesta: S/" << costoPelicula << endl;
-						Sleep(2000);
 						break;
 					case 'e':
 						costoPelicula = 25.99;
 						cout << "\nLa pelicula [Alma Maldita] cuesta: S/" << costoPelicula << endl;
-						Sleep(2000);
 						break;
 					default:
 						cout << "\n Parece que ha ocurrido un  problema con la eleccion, intente nuevamente: " << endl;
-						Sleep(2000);
 				}
 				cout << "\n Se agregara el costo de la pelicula :" << costoPelicula << " a su cuenta actual de : " << costoTotal << endl;
 				cout << "\n (a): si" << endl;
@@ -226,26 +235,86 @@ int main()
 	cout << "EL PRECIO POR CADA TICKET ES S/." << costoTotal << "\n" << endl;
 	cout << "REDONDEANDO SERIA S/." << round(costoTotal) << "\n" << endl;
 	system("\npause");
+	do {
+		do {
+			system("cls");
+			_menu.Asientos();
+			_menu.Promociones();
+			cout << "\n cuantos tikets desea (maximo 10)" << endl;
+			cin >> tickets;
+			numeroTickets = _validar.ValidarNumero(tickets);
+			if (numeroTickets < 1)
+				cout << "ingrese un numero positivo " << endl;
+			if (numeroTickets > 10)
+				cout << " ingrese un numero menor a 10" << endl;
+			Sleep(500);
+		} while (numeroTickets<1|| numeroTickets>10);
+		cout << "Usted esta por comprar " << numeroTickets << "tickets " << endl;
+		cout << "El costo por cada ticket es de  "<<costoTotal<<" y por los "<<numeroTickets<<" tickets"<<endl;
+		cout << " Seria un total de :$" << costoTotal*numeroTickets<<endl;
+		cout << "\n (a): si" << endl;
+		cout << "\n (b): no, ingresar nueva cantidad" << endl;
+		cin >> respuesta;
+		respuesta = _validar.ValidarOpcion(respuesta);
+	} while (respuesta!='a');
+	costoTotal = costoTotal * numeroTickets;
 	system("cls");
-	_menu.Asientos();
-	_menu.Promociones();
-	cout << "\n cuantos tikets desea (maximo 10)" << endl;
-	cin >> tickets;
-	system("cls");
-	if (tickets == 3) {
+	if (numeroTickets == 3) {
 		cout << "POR SU COMPRA SE LLEVA UN PEPSI GRATIS!\n" << endl;
 		system("pause");
 	}
 
-	if (tickets == 5) {
+	if (numeroTickets == 5) {
 		cout << "SE LLEVARA UN BOTE MEDIANO DE POPCORN\n" << endl;
 		system("pause");
 	}
-	if (tickets >= 6) {
+	if (numeroTickets >= 6) {
 		cout << "FELICIDADES SE LLEVARA UN TICKET COMPLETAMENTE GRATIS\n" << endl;
+		cout << " Ahora usted tiene " << numeroTickets ++ << " tickets por el precio de :$"<<costoTotal<< endl;
 		system("pause");
 	}
+	
 	cout << "\n";
 	cout << "                                                                                         SUBTOTAL A PAGAR : " << costoTotal << endl;
+	system("pause ");
+	system("cls");
+	cout << "Usted tiene :"<<numeroTickets<<"Tickets" << endl;
+	cout << "Porfavor ingrese el nombre de la persona que usara el ticket , en este caso seran :" << numeroTickets << " nombres" << endl;
+	
+	fflush(stdin);
+	usuarios = new string[numeroTickets];
+	for (int i = 0; i < numeroTickets; i++) {
+		cout << "ingrese el [" << i + 1 << "°] mombre para el asiento numero["<<i+1<<"]" << endl;
+		cin >> usuarios[i];
+		fflush(stdin);
+	}
+	Sleep(1000);
+	system("cls");
+	_menu.Encabezado(3);
+		do {
+			fflush(stdin);
+			_menu.ListarUsuarios(usuarios, numeroTickets);
+			cout << "\n";
+			cout << "a) Continuar "<<endl;
+			cout << "b) Editar nombres de usuarios" << endl;
+			cin >> opcion;
+			opcion = _validar.ValidarOpcion(opcion);
+			if (opcion == 'b') {
+				do {
+					cout << "Ingrese el numero de poscion que desea editar (1 -" << numeroTickets << ")" << endl;
+					cin >> posicion;
+					numeroPosicion = _validar.ValidarNumero(posicion);
+				} while (!(_validar.ValidarRango(numeroPosicion, 1, numeroTickets)));
+				cout << " ingrese el nuevo nombe:                                 (valor actual: '" << usuarios[numeroPosicion - 1] << "')" << endl;
+				cin >> usuarios[numeroPosicion - 1];
+				cout << "\n";
+				cout << "usuario actualizado " << endl;
+			}
+			
+		} while (opcion !='a');
+		
+	cout << "                                                                                         SUBTOTAL A PAGAR : " << costoTotal << endl;
+	delete[] usuarios;
+
 	return 0;
 }

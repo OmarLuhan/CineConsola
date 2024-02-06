@@ -1,10 +1,11 @@
+#include<string>
 #pragma once
 #ifndef MENU_H
 #define MENU_H
 class Menu {
 public:
     void Saludo();
-    void Encabezado(int numero_encabezado);
+    void Encabezado(int);
     void Peliculas();
     void Estreno();
     void Clasicos();
@@ -13,7 +14,8 @@ public:
     void SalaConvencional();
     void Asientos();
     void Promociones();
-    
+    void ListarUsuarios(std::string* usuarios , int numeroUsuarios);
+
     void Tipodecliente();
     void Combos();
     void Bebidas();

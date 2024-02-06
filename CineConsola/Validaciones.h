@@ -10,6 +10,7 @@ public:
     char ValidarOpcion5(char);
     char ValidarOpcion3(char);
     bool esNumero(string);
-    int ValidarNumeroTickets(string);
+    int ValidarNumero(string);
+    bool ValidarRango(int, int,int);
 };
 #endif

@@ -113,3 +113,11 @@ void Menu:: Promociones() {
 	cout << "'\nPOR LA COMPRA DE 6 A MAS TICKETS LLEVA UN PASE GRATIS\n" << endl;
 	Encabezado(4);
 }
+
+void Menu::ListarUsuarios(string * usuarios,int numeroUsuarios) {
+	for (int i = 0; i < numeroUsuarios; i++) {
+		cout << "[ " << i + 1 << "]" << usuarios[i];
+		cout << "\n";
+		fflush(stdin);
+	}
+}

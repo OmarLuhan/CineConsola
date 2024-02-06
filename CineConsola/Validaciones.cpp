@@ -39,10 +39,15 @@ bool Validaciones:: esNumero(string cadena) {
 	return true;
 }
 
-int Validaciones::ValidarNumeroTickets(string cadena) {
+int Validaciones::ValidarNumero(string cadena) {
 	while (!esNumero(cadena))
 	{
 		cout << "Ingresar solo numeros" << endl;
+		cin >> cadena;
 	}
 	return stoi(cadena);
+}
+bool Validaciones::ValidarRango(int value,int min, int max) {
+	return !(value < min || value > max);
+
 }
