@@ -5,7 +5,7 @@
 #include "Menu.h"
 #include "Validaciones.h"
 using namespace std;
-void Menu:: Saludo() {
+string Menu:: Saludo() {
 	Validaciones _validar;
 	char mensaje[50] = "CINE CODE TE DA LA BIENVENIDA ";
 	string nombre;
@@ -27,6 +27,7 @@ void Menu:: Saludo() {
 	Encabezado(4);
 	cout << mensaje << " " << nombre;
 	cout << "\n";
+	return nombre;
 }
 void Menu :: Encabezado(int numero_encabezado) {
 	switch (numero_encabezado) {
@@ -68,7 +69,7 @@ void Menu:: Clasicos() {
 	cout << "b. Casablanca (1942)     (17:00 18:30)    $21.99     |\n" << endl;
 	cout << "c. Frankenstein (1931)   (19:00 20:30)    $21.99     |\n" << endl;
 	cout << "d. Viernes 13 (2007)     (21:00 22:30)    $20.99     |\n" << endl;
-	cout << "e. Titanic(1997)         (23:00 24:30)    $20.99     |\n" << endl;
+	cout << "e. Titanic (1997)        (21:00 22:30)    $20.99     |\n" << endl;
 }
 void Menu::Servicios() {
 	Encabezado(4);

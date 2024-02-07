@@ -36,10 +36,18 @@ int main()
 #pragma region boleta
 	string nombre = "";
 	string* usuarios;
+	string nombrePelicula;
+	string servicio;
+	string sala;
+	double costoTicket=0;
+	int numeroTicketsBoleta = 0;
+	string combos = " sin combos";
+	string adicionales = "sin adicionales";
+	string ticketGratis = "si tickets gratis";
 
 #pragma endregion
 
-	_menu.Saludo();
+	nombre=_menu.Saludo();
 	do {
 		_menu.Peliculas();
 		cin >> opcion;
@@ -64,22 +72,27 @@ int main()
 				switch (opcion) {
 					case 'a':
 						costoPelicula = 24.70;
+						nombrePelicula = "Star Wars: Episodio IX    (6:00 - 7:30)";
 						cout << "\nLa pelicula [Star Wars: Episodio IX] cuesta: S/" << costoPelicula << endl;
 						break;
 					case 'b':
 						costoPelicula = 26.50;
+						nombrePelicula = "IT :Capitulo II           (7:00 - 8:30)";
 						cout << "\nLa pelicula [IT :Capitulo II] cuesta: S/" << costoPelicula << endl;
 						break;
 					case 'c':
 						costoPelicula = 21.80;
+						nombrePelicula = "Zombie Land 2             (9:00 - 10:30)";
 						cout << "\nLa pelicula [Zombie Land 2] cuesta: S/" << costoPelicula << endl;
 						break;
 					case 'd':
 						costoPelicula = 22.99;
+						nombrePelicula = "Terminator: Destino oscuro(11:00 - 12:30)";
 						cout << "\nLa pelicula [Terminator: Destino oscuro] cuesta: S/" << costoPelicula << endl;
 						break;
 					case 'e':
 						costoPelicula = 25.99;
+						nombrePelicula = "Alma Maldita              (13:00 -14:30)";
 						cout << "\nLa pelicula [Alma Maldita] cuesta: S/" << costoPelicula << endl;
 						break;
 					default:
@@ -102,21 +115,26 @@ int main()
 				switch (opcion) {
 				case 'a':
 					costoPelicula = 23.99;
+					nombrePelicula = "El mago de Oz (1939)  (16:00 16:30)";
 					cout << "\nLa pelicula [El mago de Oz (1939)] cuesta:" << costoPelicula << endl;
 					Sleep(2000); break;
 				case 'b':
 					costoPelicula = 21.99;
+					nombrePelicula = "Casablanca (1942)     (17:00 18:30)";
 					cout << "\nLa pelicula [Casablanca (1942)] cuesta:" << costoPelicula << endl;
 					Sleep(2000); break;
 				case 'c':
 					costoPelicula = 21.99;
+					nombrePelicula = "Frankenstein (1931)   (19:00 20:30)";
 					cout << "\nLa pelicula [Frankenstein (1931)] cuesta:" << costoPelicula << endl;
 					Sleep(2000); break;
 				case 'd':
+					nombrePelicula = "Viernes 13 (2007)     (21:00 22:30)";
 					costoPelicula = 20.99;
 					cout << "\nLa pelicula [Viernes 13 (2007)] cuesta:" << costoPelicula << endl;
 					Sleep(2000); break;
 				case 'e':
+					nombrePelicula = "Titanic (1997)     (21:00 22:30)";
 					costoPelicula = 20.99;
 					cout << "\nLa pelicula [Titanic(1997)] cuesta:" << costoPelicula << endl;
 					Sleep(2000); break;
@@ -156,16 +174,23 @@ int main()
 			do {
 				do {
 					_menu.SalaPremium();
+					servicio = "premium";
 					cin >> opcion;
 					opcion = _validar.ValidarOpcion3(opcion);
-					if (opcion == 'a')
+					if (opcion == 'a') {
 						cout << "\ha elegido sala interactiva" << endl;
-					else
-						if (opcion == 'b')
+						sala = "Sala interactiva";
+					}
+					else {
+						if (opcion == 'b') {
 							cout << "\ha elegido sala 3D" << endl;
-						else
+							sala = "sala 3D";
+						}
+						else {
 							cout << "\ha elegido sala 2D" << endl;
-
+							sala = "Sala 2D";
+						}
+					}
 					cout << " (a) continuar" << endl;
 					cout << " (b) elegir otra opcion" << endl;
 					cin >> respuesta;
@@ -192,6 +217,7 @@ int main()
 				respuesta = _validar.ValidarOpcion(respuesta);
 			} while (respuesta!='a');
 			costoTotal = _calcular.SumarProcentaje(costoTotal, porcentaje);
+			costoTicket = costoTotal;
 			cout << "                                                                                       SUBTOTAL A PAGAR : " << costoTotal << endl;
 			system("pause");
 			break;
@@ -199,12 +225,17 @@ int main()
 			do {
 				do {
 					_menu.SalaConvencional();
+					servicio = "Convencional";
 					cin >> opcion;
 					opcion = _validar.ValidarOpcion(opcion);
-					if (opcion == 'a')
+					if (opcion == 'a') {
 						cout << "\ha elegido sala 3D" << endl;
-					else
+						sala = "sala 2d";
+					}
+					else {
 						cout << "\ha elegido sala 2D" << endl;
+						sala = "salal 3d";
+					}
 
 					cout << " (a) continuar" << endl;
 					cout << " (b) elegir otra opcion" << endl;
@@ -261,19 +292,23 @@ int main()
 		respuesta = _validar.ValidarOpcion(respuesta);
 	} while (respuesta!='a');
 	costoTotal = costoTotal * numeroTickets;
+	numeroTicketsBoleta = numeroTickets;
 	system("cls");
 	if (numeroTickets == 3) {
 		cout << "POR SU COMPRA SE LLEVA UN PEPSI GRATIS!\n" << endl;
+		adicionales = "Pesi gratis";
 		system("pause");
 	}
 
 	if (numeroTickets == 5) {
 		cout << "SE LLEVARA UN BOTE MEDIANO DE POPCORN\n" << endl;
+		adicionales = "bote mediano de canchita";
 		system("pause");
 	}
 	if (numeroTickets >= 6) {
 		cout << "FELICIDADES SE LLEVARA UN TICKET COMPLETAMENTE GRATIS\n" << endl;
-		cout << " Ahora usted tiene " << numeroTickets ++ << " tickets por el precio de :$"<<costoTotal<< endl;
+		cout << " Ahora usted tiene " << ++numeroTickets << " tickets por el precio de :$" << costoTotal << endl;
+		ticketGratis = "1 ticket adcional";
 		system("pause");
 	}
 	
@@ -300,6 +335,7 @@ int main()
 			cout << "\n";
 			cout << "a) Continuar "<<endl;
 			cout << "b) Editar nombres de usuarios" << endl;
+			fflush(stdin);
 			cin >> respuesta;
 			respuesta = _validar.ValidarOpcion(respuesta);
 			if (opcion == 'b') {
@@ -333,11 +369,14 @@ int main()
 					switch (opcion) {
 					case 'a':
 						precioCombo = 33.50;
+						combos = "combo NACHOS";
 						cout << "\nEl combo NACHOS cuesta $" << precioCombo << endl; break;
 					case 'b':
 						precioCombo = 39.90;
+						combos = "combo DUO";
 						cout << "\nEl combo DUO cuesta $" << precioCombo << endl; break;
 					case 'c':precioCombo = 20.60;
+						combos = "combo COMBINACION";
 						cout << "\nEl combo COMBINACION cuesta $" << precioCombo << endl; break;
 					}
 					cout << "a) continuar" << endl;
@@ -375,8 +414,26 @@ int main()
 			cout << "                                                                                         SUBTOTAL A PAGAR : " << costoTotal << endl;
 
 		}
-		
-	//cout << "                                                                                         SUBTOTAL A PAGAR : " << costoTotal << endl;
+		Sleep(1000);
+		system("cls");
+		cout << " aqui esta un resumen de lo que ha elegido: " << endl;
+		cout << " nombre de usuario : " << nombre << endl;
+		cout << "________________________________________________________________________" << endl;
+		cout << " pelicula/funcion : " << nombrePelicula<<" $"<< costoPelicula<<endl;
+		cout << "servicio :" <<servicio << endl;
+		cout << " sala :"<<sala<<"$" << (costoPelicula * porcentaje) - costoPelicula << "(" << (porcentaje * 100) - 100<<"%) " << endl;
+		cout << "________________________________________________________________________" << endl;
+		cout << " costo por ticket/entrada: Pelicula/funcion + servicio/sala $" <<costoTicket<< endl;
+
+		cout << "tickets/entradas $: "<<costoTicket << "cantidad : "<< numeroTicketsBoleta << "$ "<< costoTicket* numeroTicketsBoleta <<endl;
+		cout << "Tickets gratis " << ticketGratis << endl;
+		cout << " lista de personas que ingresaran : " << endl;
+		_menu.ListarUsuarios(usuarios, numeroTickets);
+		cout << " \n combos: "<<combos<<" $ "<<precioCombo << "cantidad: " <<numeroCantidadCombos<< "$ " <<precioCombo*numeroCantidadCombos<< endl;
+		cout << " adicionales: " << adicionales << endl;
+        cout << "   SUB TOTAL (sin redondear): " << costoTotal << endl;
+		cout << "   SUBTOTAL A PAGAR : " << costoTotal << endl;
+
 	delete[] usuarios;
 	return 0;
 }

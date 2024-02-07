@@ -4,7 +4,7 @@
 #define MENU_H
 class Menu {
 public:
-    void Saludo();
+    std::string Saludo();
     void Encabezado(int);
     void Peliculas();
     void Estreno();
@@ -16,13 +16,8 @@ public:
     void Promociones();
     void ListarUsuarios(std::string* usuarios , int numeroUsuarios);
     void Combos();
-
-    void Tipodecliente();
-    void Bebidas();
     void Tarjeta();
     void Credito();
     void Devito();
-    
-    void Arreyasientos();
 };
 #endif 
